@@ -1,10 +1,13 @@
 <template>
     <div class="app">
         <router-view></router-view>
+        
     </div>
 </template>
 
-<script></script>
+<script>
+
+</script>
 
 <style>
 @font-face {
@@ -15,6 +18,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: "Corbel";
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="todo_list">
+  <div :class="['todo_list', `${isDark}`]">
     <h4>Your to do list</h4>
     <div class="calend">
       <img src="@/access/img/icons/Calendar_Days.svg" alt="" />
@@ -8,10 +8,10 @@
         {{ date.getHours() }}:{{ date.getMinutes() }}
       </p>
     </div>
-    <div class="todo_item" v-for="todo in todos">
-      <div v-if="todo.status == true" :class="['todo', 'done']">✓</div>
-      <div v-else="todo.status !== true" :class="['todo']"></div>
-      <p>{{ todo.text }}</p>
+    <div  class="todo_item" v-for="todo in todos">
+      <div v-if="todo.status == true" :class="['todo', 'done']" >✓</div>
+      <div  v-else="todo.status !== true" :class="['todo']" ></div>
+      <p @click="changeStatus(todo.id)">{{ todo.text }} </p>
     </div>
   </div>
 </template>
@@ -27,7 +27,26 @@ export default {
       type: String,
       required: true,
     },
-  },
+    isDark:{
+        type: Boolean,
+      required: true,
+    }
+  },methods:{
+    changeStatus(id){
+          this.todos.forEach(elem => {
+            if(elem.id ==id){
+              if(elem.status===true){
+                elem.status=false
+              }else if(elem.status===false){
+                elem.status=true
+              }
+            }
+          });
+    },
+  },mounted(){
+    // this.changeStatus(status)
+  }
+  
 };
 </script>
 
@@ -40,6 +59,12 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-bottom: 40px;
+}
+
+.true{
+    background: #1F2567;
+    color: #ffffff;
 }
 
 .calend, .todo_item{

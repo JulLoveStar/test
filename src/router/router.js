@@ -6,11 +6,13 @@ import Login from "../pages/Login"
 const routes =[
     {
         path:'/',
-        component: Main
+        component: Main,
+        props:true
     },
     {
         path:'/login',
-        component: Login
+        component: Login,
+        props:true
     },
 ]
 
